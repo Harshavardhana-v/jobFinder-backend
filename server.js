@@ -11,11 +11,6 @@ const authMiddleware = require('./middleware/authMiddleware');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-const server=app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
-
-
 // Initialize database connection
 initializeDatabase().catch(console.error);
 
@@ -67,7 +62,7 @@ app.get('/api/profile/:userId', (req, res) => {
     phone: '',
     location: '',
     headline: 'Professional',
-    bio: 'Tell us about yourself...',
+    bio: 'Tell us about yourself...'
   };
   res.json(profile);
 });
@@ -107,7 +102,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// Start the server
+// ✅ Start the server (keep only this one)
 const server = app.listen(PORT, () => {
   const address = server.address();
   console.log(`\n✅ Server running on port: ${address.port}`);
@@ -122,7 +117,6 @@ const server = app.listen(PORT, () => {
   console.log('\nℹ️ When testing locally, access: http://localhost:' + address.port);
   console.log('   On Render, use your deployment URL (e.g., https://your-app.onrender.com)');
 });
-
 
 // Handle unhandled promise rejections
 process.on('unhandledRejection', (error) => {
