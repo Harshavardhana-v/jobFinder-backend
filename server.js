@@ -10,7 +10,7 @@ const authMiddleware = require('./middleware/authMiddleware');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-const HOST = '192.168.12.122'; 
+const HOST = '192.168.12.121'; 
 
 // Initialize database connection
 initializeDatabase().catch(console.error);
