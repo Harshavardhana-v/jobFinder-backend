@@ -108,22 +108,21 @@ app.use((req, res, next) => {
 });
 
 // Start the server
-const server = app.listen(PORT, HOST, () => {
+const server = app.listen(PORT, () => {
   const address = server.address();
-  console.log(`\nServer running on:`);
-  console.log(`- Local:            http://localhost:${address.port}`);
-  console.log(`- On Your Network:  http://${Object.values(ifaces)
-    .flat()
-    .find(iface => iface.family === 'IPv4' && !iface.internal)?.address || 'YOUR_LOCAL_IP'}:${address.port}`);
-  
+  console.log(`\n✅ Server running on port: ${address.port}`);
+
   console.log('\nAvailable endpoints:');
-  console.log(`- GET    http://localhost:${address.port}/api/health`);
-  console.log(`- POST   http://localhost:${address.port}/api/auth/register`);
-  console.log(`- POST   http://localhost:${address.port}/api/auth/login`);
-  console.log(`- GET    http://localhost:${address.port}/api/profile/me`);
-  console.log(`- PATCH  http://localhost:${address.port}/api/profile/me`);
-  console.log('\nMake sure to replace localhost with your local IP when connecting from other devices!');
+  console.log(`- GET    /api/health`);
+  console.log(`- POST   /api/auth/register`);
+  console.log(`- POST   /api/auth/login`);
+  console.log(`- GET    /api/profile/me`);
+  console.log(`- PATCH  /api/profile/me`);
+
+  console.log('\nℹ️ When testing locally, access: http://localhost:' + address.port);
+  console.log('   On Render, use your deployment URL (e.g., https://your-app.onrender.com)');
 });
+
 
 // Handle unhandled promise rejections
 process.on('unhandledRejection', (error) => {
